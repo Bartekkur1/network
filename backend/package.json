@@ -14,7 +14,11 @@
   "license": "ISC",
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.3.5",
     "@types/lowdb": "^1.0.9",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
     "typescript": "^3.7.4"
   },

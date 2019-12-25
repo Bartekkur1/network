@@ -9,7 +9,7 @@ test('initialize_database', async () => {
 test('database_initialized_value', async () => {
     let db = await getDb();
     let keys = Object.keys(db.value());
-    expect(keys.includes("users")).toBeTruthy();
+    expect(keys.includes("admin")).toBeTruthy();
 });
 
 test('get_database', async () => {
