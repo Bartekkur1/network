@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend made for network project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.ts"
+  },
+  "jest": {
+    "verbose": true
+  },
+  "author": "Bartek Kurpanik",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^3.0.0",
+    "@types/lowdb": "^1.0.9",
+    "lowdb": "^1.0.0",
+    "typescript": "^3.7.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.24",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0"
+  }
+}
