@@ -1,18 +1,13 @@
 import { hash, compare } from 'bcryptjs';
-import { sign, decode } from 'jsonwebtoken';
 import { getDb } from './dbService';
 import { Admin } from '../entity/admin';
-import config from '../config';
 
-async function authorize(password: string): Promise<string> {
+async function authorize(password: string): Promise<boolean> {
     let admin = await getAdmin();
-    if(await compare(password, admin.password)) {
-        return sign({
-            exp: (Date.now() / 1000) + (config.jwtExpirationTime * 3_600),
-        }, config.jwtSecret);
-    }
+    if(await compare(password, admin.password))
+        return true;
     else 
-        throw new Error("Invalid password");
+        return false;
 }
 
 async function getAdmin(): Promise<Admin> {
@@ -25,19 +20,10 @@ async function getAdmin(): Promise<Admin> {
     return admin;
 }
 
-async function authenticate(token: string): Promise<boolean> {
-    try {
-        return decode(token) !== undefined;
-    }
-    catch(e) {
-        return false;
-    }
-}
-
 async function changePassword(password: string): Promise<boolean> {
     let newPassword = await hash(password, 10);
     let db = await getDb();
     return await db.get('admin').set("password", newPassword).write() !== undefined;
 }
 
-export { authenticate, authorize, getAdmin, changePassword }
+export { authorize, getAdmin, changePassword }
