@@ -21,7 +21,7 @@ test("failed_authorize", async () => {
         await authorize(randomString());
     }
     catch(e) {
-        expect(e.message).toEqual("Invalid password");
+        expect(e.message).toEqual("Invalid login or password");
     }
 });
 
