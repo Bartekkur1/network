@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node index.ts"
+    "start": "ts-node server.ts"
   },
   "jest": {
     "verbose": true
@@ -15,12 +15,13 @@
   "dependencies": {
     "@types/bcrypt": "^3.0.0",
     "@types/bcryptjs": "^2.4.2",
-    "@types/jsonwebtoken": "^8.3.5",
     "@types/lowdb": "^1.0.9",
+    "@types/ws": "^6.0.4",
     "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
-    "typescript": "^3.7.4"
+    "speedtest-net": "^1.6.0",
+    "typescript": "^3.7.4",
+    "ws": "^7.2.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.24",
