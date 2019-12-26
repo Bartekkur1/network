@@ -14,8 +14,7 @@ class Login extends Component {
         };
     }
 
-    submitForm(e) {
-        e.preventDefault();
+    login() {
         Auth.authorize(this.state.login, this.state.password);
     }
 
@@ -34,7 +33,7 @@ class Login extends Component {
                         <FontAwesomeIcon icon="signal" size="2x"/>
                     </div>
                 </div>
-                <form onSubmit={e => this.submitForm(e)} className="loginpanel_form">
+                <div className="loginpanel_form">
                     <div className="loginpanel_form_group">
                         <label className="loginpanel_label" htmlFor="login" >Login: </label>
                         <input className="loginpanel_input" type="text" name="login" placeholder="Admin" onChange={e => this.change(e)} />
@@ -43,10 +42,10 @@ class Login extends Component {
                         <label className="loginpanel_label" htmlFor="password" >Password: </label>
                         <input className="loginpanel_input" type="password" name="password" placeholder="secretPassword123" onChange={e => this.change(e)} />
                     </div>
-                    <button className="form_button" type="submit">
+                    <button className="form_button" onClick={() => this.login()}>
                         Login
                     </button>
-                </form>
+                </div>
             </div>)
     }
 }
