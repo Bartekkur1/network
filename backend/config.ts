@@ -5,5 +5,6 @@ export default {
     "password": "Admin",
     "testTimeoutSec": 5,
     "host": "localhost",
-    "port": 8000
+    "port": 8000,
+    "wsPort": 8001
 }

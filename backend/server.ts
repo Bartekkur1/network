@@ -1,21 +1,21 @@
 import config from './config';
-import { authorize } from './services/authService';
+import { authenticate } from './services/authService';
 import WebSocket, { Server, VerifyClientCallbackAsync, Data } from 'ws';
 import { handleRequest } from './router';
 
 const verifyClient: VerifyClientCallbackAsync = async (info, cb) => {
-    let password = info.req.headers.password;
-    if(password !== undefined) 
-        cb(await authorize((password as string)), 200);
-    else 
-        cb(false, 400);
+    let token = info.req.headers.authorization.replace(/Bearer /, "");
+    let success = await authenticate(token);
+    cb(success, success ? 200 : 401);
 }
 
 const webSocketServer = new Server({ 
-    port: config.port,
+    port: config.wsPort,
     host: config.host,
     verifyClient: verifyClient
 });
+
+console.log(`websocket is runing on ${config.host}:${config.wsPort}`);
 
 webSocketServer.on('connection', (ws: WebSocket) => {
     ws.on('message', (data: Data) => {
