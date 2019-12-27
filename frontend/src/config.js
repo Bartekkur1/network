@@ -1,8 +1,9 @@
 import { transitions, positions } from 'react-alert';
 
 export default {
-    SERVER_IP: "0.0.0.0",
+    SERVER_IP: "localhost",
     SERVER_PORT: "8000",
+    SERVER_WS_PORT: "8001",
     API_URL: "http://localhost:8000/api",
     alert: {
         position: positions.TOP_RIGHT,

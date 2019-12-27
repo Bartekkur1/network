@@ -2,19 +2,19 @@ import { LOGIN, LOGOUT } from '../constans/actionTypes';
 
 export default (state = {
     authorized: false,
-    jwtToken: "",
+    token: "",
 }, action) => {
     switch (action.type) {
         case LOGIN:
             return {
                 authorized: true,
-                jwtToken: action.jwtToken,
+                token: action.token,
             }
         case LOGOUT:
             localStorage.removeItem('auth');
             return {
                 authorized: false,
-                jwtToken: "",
+                token: "",
             }
         default:
             return state

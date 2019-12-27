@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { store } from '../../store';
-import { Auth } from '../../api/auth';
 import { LOGIN } from '../../constans/actionTypes';
+import { ws } from '../../api/ws';
 
 const mapStateToProps = (state) => {
     return {
@@ -25,11 +25,10 @@ class SecuredRoute extends Component {
         let authDataRaw = localStorage.getItem('auth');
         if(authDataRaw !== null) {
             let authData = JSON.parse(authDataRaw);
-            await Auth.verifyToken(authData.token);
+            await ws.connect(authData.token);
             store.dispatch({ 
                 type: LOGIN, 
-                jwtToken: authData.token, 
-                userId: authData.userId,
+                token: authData.token, 
             });
         }
     }
