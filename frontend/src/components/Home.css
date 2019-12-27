@@ -1,20 +1,20 @@
-.home_container {
+.home-container {
     height: 100vh;
     display: flex;
 }
 
-.loading_container {
+.loading-container {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.7);
     width: 100%;
     height: 100vh;
 }
 
-.loading_gif {
+.loading-gif {
     width: 200px;
 }
 
-.gif_container {
+.gif-container {
     display: flex;
     width: 100%;
     height: 90vh;
