@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { store } from '../../store';
-import { LOGIN } from '../../constans/actionTypes';
 import { ws } from '../../api/ws';
 
 const mapStateToProps = (state) => {
@@ -26,10 +24,6 @@ class SecuredRoute extends Component {
         if(authDataRaw !== null) {
             let authData = JSON.parse(authDataRaw);
             await ws.connect(authData.token);
-            store.dispatch({ 
-                type: LOGIN, 
-                token: authData.token, 
-            });
         }
     }
 

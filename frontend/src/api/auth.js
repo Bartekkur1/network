@@ -4,7 +4,7 @@ import { SHOW_LOADING, HIDE_LOADING, SHOW_ALERT, LOGIN, LOGOUT } from '../consta
 import { ERROR } from '../constans/alertTypes';
 
 export const Auth = {
-    authorize: function (login, password) {
+    authorize: (login, password) => {
         store.dispatch({ type: SHOW_LOADING });
         fetch(config.API_URL, {
             method: "POST",
@@ -19,7 +19,6 @@ export const Auth = {
             res.text()
             .then(txt => {
                 let response = JSON.parse(txt);
-                console.log(response.token);
                 if(res.status !== 200) {
                     store.dispatch({ type: SHOW_ALERT, message: response.error, alertType: ERROR });
                 }
@@ -34,10 +33,16 @@ export const Auth = {
             store.dispatch({ type: SHOW_ALERT, message: "Server offline, try again later...", alertType: ERROR });
         })
     },
-    logout: function() {
+    logout: () => {
         store.dispatch({ type: LOGOUT });
     },
-    getToken: function() {
+    login: (token) => {
+        store.dispatch({ 
+            type: LOGIN,
+            token: token, 
+        });
+    },
+    getToken: () => {
         return store.getState().Auth.token;
     }
 }
