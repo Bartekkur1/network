@@ -4,7 +4,8 @@ import WebSocket, { Server, VerifyClientCallbackAsync, Data } from 'ws';
 import { handleRequest } from './router';
 
 const verifyClient: VerifyClientCallbackAsync = async (info, cb) => {
-    let token = info.req.headers.authorization.replace(/Bearer /, "");
+    let rawUrl = info.req.url;
+    let token = rawUrl.replace("/?token=", "");
     let success = await authenticate(token);
     cb(success, success ? 200 : 401);
 }
@@ -18,6 +19,8 @@ const webSocketServer = new Server({
 console.log(`websocket is runing on ${config.host}:${config.wsPort}`);
 
 webSocketServer.on('connection', (ws: WebSocket) => {
+    console.log("Client conected");
+    ws.send("Hi");
     ws.on('message', (data: Data) => {
         handleRequest(ws, data.toString());
     });

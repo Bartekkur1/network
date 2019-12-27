@@ -34,7 +34,7 @@ export async function authorize(password: string): Promise<string> {
 export async function authenticate(token: string): Promise<boolean> {
     try {
         let decoded = await decode(token);
-        return decoded !== undefined;
+        return decoded !== null;
     }
     catch(e) {
         return false;
