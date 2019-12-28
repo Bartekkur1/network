@@ -1,4 +1,4 @@
-export class Admin {
+export interface Admin {
     login: string;
     password: string;
 }
