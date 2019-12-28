@@ -3,6 +3,7 @@ import { initDatabase } from '../services/dbService';
 import config from '../config';
 
 test('get_admin_account', async () => {
+    initDatabase();
     let admin = await getAdmin();
     let properties = Object.keys(admin);
     expect(properties.includes("login")).toBeTruthy();

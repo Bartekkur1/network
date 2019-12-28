@@ -10,6 +10,8 @@ test('database_initialized_value', async () => {
     let db = await getDb();
     let keys = Object.keys(db.value());
     expect(keys.includes("admin")).toBeTruthy();
+    expect(keys.includes("servers")).toBeTruthy();
+    expect(keys.includes("testServer")).toBeTruthy();
 });
 
 test('get_database', async () => {

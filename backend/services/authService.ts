@@ -22,7 +22,7 @@ export const handleAuthorization: RequestHandler = async (req: Request, res, nex
 }
 
 export async function authorize(password: string): Promise<string> {
-    let admin = await getAdmin();
+    let admin = getAdmin();
     if(await compare(password, admin.password))
         return sign({
             exp: (Date.now() + config.jwtExpirationHours * 3600),
@@ -41,8 +41,8 @@ export async function authenticate(token: string): Promise<boolean> {
     }
 }
 
-export async function getAdmin(): Promise<Admin> {
-    let db = await getDb();
+export function getAdmin(): Admin {
+    let db = getDb();
     let admin = db.get('admin').value();
 
     if(admin === undefined)
@@ -53,6 +53,6 @@ export async function getAdmin(): Promise<Admin> {
 
 export async function changePassword(password: string): Promise<boolean> {
     let newPassword = await hash(password, 10);
-    let db = await getDb();
-    return await db.get('admin').set("password", newPassword).write() !== undefined;
+    let db = getDb();
+    return db.get('admin').set("password", newPassword).write() !== undefined;
 }
