@@ -1,18 +1,19 @@
 const speedtest = require('speedtest-net');
 import { sendMessage, Message } from '../server';
 import { Server } from '../entity/server';
-import { getDb, DbSchema } from './dbService';
-import low from "lowdb";
+import { getDb, DbSchema, initDatabase } from './dbService';
+import low from 'lowdb';
 import { Client } from '../entity/client';
 import { Result } from '../entity/result';
 
-type serviceStatus = "RUNING" | "WAITING";
+type serviceStatus = 'RUNING' | 'WAITING';
 
 export const networkService = {
     test: <any>null,
-    status: <serviceStatus>"WAITING",
+    status: <serviceStatus>'WAITING',
     init: () => {
-        networkService.status = "RUNING";
+        networkService.status = 'RUNING';
+        initDatabase();
         networkService.runTest();
     },
     runTest: () => {
@@ -22,42 +23,63 @@ export const networkService = {
     pinHandlers: () => {
         let db = getDb();
         networkService.test.on('bestservers', (servers: any) => 
-            networkService.handleBestServers((servers as Server[]), db));
+            networkServiceHandler.handleBestServers((servers as Server[]), db));
         networkService.test.on('testserver', (server: any) => 
-            networkService.handleTestServer((server as Server), db));
+            networkServiceHandler.handleTestServer((server as Server), db));
         networkService.test.on('downloadprogress', (speed: any) =>
-            networkService.handleProgress(speed, "download"));
+            networkServiceHandler.handleProgress(speed, 'download'));
         networkService.test.on('uploadprogress', (speed: any) =>
-            networkService.handleProgress(speed, "upload"));
+            networkServiceHandler.handleProgress(speed, 'upload'));
         networkService.test.on('data', (data: any) => 
-            networkService.handleResult(data, db));
+            networkServiceHandler.handleResult(data, db));
         networkService.test.on('config', (config: any) => 
-            networkService.handleConfig(config, db));
+            networkServiceHandler.handleConfig(config, db));
     },
+    initialData: () => {
+        let db = getDb();
+
+        let client = db.get('client').value();
+        let results = db.get('results').value().sort((a, b) => b.id - a.id).slice(0, 20);
+
+        return <Message[]> [{ 
+            name: 'clientInfo',
+            value: client
+        }, {
+            name: 'results',
+            value: results
+        }];
+    },
+    stopTest: () => {
+        networkService.test.removeAllListeners();
+    },
+}
+
+const networkServiceHandler = {
     handleResult: (data: any, db: low.LowdbSync<DbSchema>) => {
         let results = db.get('results');
         let date = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
-        let result = { 
+        let result = <Result>{ 
             ...rawDataToReult(data), 
-            date: date 
+            date: date,
+            id: results.value().length + 1
         };
         results.push(result).write();
         sendMessage(<Message>{
-            name: "testResult",
+            name: 'result',
             value: result
         });
     },
     handleConfig: (config: any, db: low.LowdbSync<DbSchema>) => {
         db.set('client', rawDataToClient(config)).write();
         sendMessage(<Message>{
-            name: "clientInfo",
+            name: 'clientInfo',
             value: config.client
         });
     },
-    handleProgress: (speed: number, type: "upload" | "download") => {
+    handleProgress: (speed: number, type: 'upload' | 'download') => {
         sendMessage(<Message>{
             name: type,
-            value: "" + speed
+            value: '' + speed
         });
     },
     handleBestServers: (servers: Server[], db: low.LowdbSync<DbSchema>) => {
@@ -71,21 +93,18 @@ export const networkService = {
                 serversDb.push(server).write();
         }
         sendMessage(<Message> {
-            name: "bestServers",
+            name: 'bestServers',
             value: serversDb.value()
         });
     },
     handleTestServer: (server: Server, db: low.LowdbSync<DbSchema>) => {
         db.set('testServer', server).write();
         sendMessage(<Message>{
-            name: "testServer",
+            name: 'testServer',
             value: server
         });
     },
-    stopTest: () => {
-
-    },
-}
+};
 
 function rawDataToReult(data: any): Result {
     let speeds = data.speeds;
