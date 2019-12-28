@@ -1,4 +1,5 @@
 export interface Server {
+    id: string;
     urL: string;
     url2: string;
     lat: string;
@@ -7,7 +8,6 @@ export interface Server {
     country: string;
     cc: string;
     sponsor: string;
-    id: string;
     host: string;
     dist: number;
     distMi: number;
