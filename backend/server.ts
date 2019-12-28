@@ -1,6 +1,7 @@
 import config from './config';
 import { authenticate } from './services/authService';
 import WebSocket, { Server, VerifyClientCallbackAsync, Data } from 'ws';
+import { networkService } from './services/networkService';
 import { handleRequest } from './router';
 
 export interface Message {
@@ -21,16 +22,29 @@ export const webSocketServer = new Server({
     verifyClient: verifyClient
 });
 
-export const sendMessage = (message: Message) => {
-    // console.log(message);
-    webSocketServer.clients.forEach((ws: WebSocket) => {
-        ws.send(JSON.stringify(message));
-    });
-}
+export const sendMessage = (messages: Message[]|Message, ws: WebSocket = null) => {
+    if((messages as []).length === undefined)
+        messages = <Message[]>[ messages ];        
+
+    if(ws === null) {
+        webSocketServer.clients.forEach((ws: WebSocket) => {
+            (messages as Message[]).forEach((message: Message) => {
+                ws.send(JSON.stringify(message));
+            });
+        });
+    }
+    else {
+        (messages as Message[]).forEach((message: Message) => {
+            ws.send(JSON.stringify(message));
+        });
+    }
+};
 
 console.log(`websocket is runing on ${config.host}:${config.wsPort}`);
 
 webSocketServer.on('connection', (ws: WebSocket) => {
+    let data = networkService.initialData();
+    sendMessage(data);
     ws.on('message', (data: Data) => {
         handleRequest(ws, data.toString());
     });
