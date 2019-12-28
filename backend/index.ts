@@ -1,6 +1,7 @@
 import express, { Response } from 'express';
 import config from './config';
-import { authorize, handleAuthorization } from './services/authService';
+import { handleAuthorization } from './services/authService';
+import { networkService } from './services/networkService';
 require('./server');
 const app = express();
 
@@ -25,4 +26,5 @@ app.use(handleAuthorization);
 
 app.listen(config.port, config.host, 0, () => {
     console.log(`App is running on ${config.host}:${config.port}`);
+    networkService.init();
 });
