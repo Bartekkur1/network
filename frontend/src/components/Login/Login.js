@@ -26,23 +26,23 @@ class Login extends Component {
 
     render() {
         return (
-            <div className="login_container">
-                <div className="header_container">
+            <div className="login-container">
+                <div className="header-container">
                     <h1>Network</h1>
-                    <div className="header_logo">
+                    <div className="header-logo">
                         <FontAwesomeIcon icon="signal" size="2x"/>
                     </div>
                 </div>
-                <div className="loginpanel_form">
-                    <div className="loginpanel_form_group">
-                        <label className="loginpanel_label" htmlFor="login" >Login: </label>
-                        <input className="loginpanel_input" type="text" name="login" placeholder="Admin" onChange={e => this.change(e)} />
+                <div className="loginpanel-form">
+                    <div className="loginpanel-form-group">
+                        <label className="loginpanel-label" htmlFor="login" >Login: </label>
+                        <input className="loginpanel-input" type="text" name="login" placeholder="Admin" onChange={e => this.change(e)} />
                     </div>
-                    <div className="loginpanel_form_group">
-                        <label className="loginpanel_label" htmlFor="password" >Password: </label>
-                        <input className="loginpanel_input" type="password" name="password" placeholder="secretPassword123" onChange={e => this.change(e)} />
+                    <div className="loginpanel-form-group">
+                        <label className="loginpanel-label" htmlFor="password" >Password: </label>
+                        <input className="loginpanel-input" type="password" name="password" placeholder="secretPassword123" onChange={e => this.change(e)} />
                     </div>
-                    <button className="form_button" onClick={() => this.login()}>
+                    <button className="form-button" onClick={() => this.login()}>
                         Login
                     </button>
                 </div>

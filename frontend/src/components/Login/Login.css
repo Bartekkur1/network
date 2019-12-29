@@ -1,30 +1,30 @@
-.loginpanel_form {
+.loginpanel-form {
     width: 20rem;
 }
 
-.loginpanel_form_group {
+.loginpanel-form-group {
     display: flex;
     flex-direction: column;
 }
 
-.loginpanel_label {
+.loginpanel-label {
     font-weight: bolder;
     margin-bottom: 0.4rem;
     margin-top: 0.8rem;
 }
 
-.loginpanel_input {
+.loginpanel-input {
     font-size: 1rem;
     padding: 0.7rem;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.loginpanel_input::placeholder {
+.loginpanel-input::placeholder {
     color: rgba(0, 0, 0, 0.25);
 }
 
-.form_button {
+.form-button {
     width: 100%;
     font-size: 1.2rem;
     margin-top: 1rem;
@@ -37,20 +37,20 @@
     color: white;
 }
 
-.loginpanel_error {
+.loginpanel-error {
     color: red;
     padding: 1rem;
     font-weight: bold;
     font-size: 1.1rem;
 }
 
-.loginpanel_aditionals {
+.loginpanel-aditionals {
     margin-top: 1rem;
     cursor: pointer;
     display: flex;
 }
 
-.login_container {
+.login-container {
     width: 100%;
     height: 100vh;
     padding-bottom: 15rem;
@@ -60,7 +60,7 @@
     flex-direction: column;
 }
 
-.header_container {
+.header-container {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -68,13 +68,13 @@
     padding: 1rem;
 }
 
-.header_container h1 {
+.header-container h1 {
     padding-right: 1rem;
     font-size: 2.5rem;
     font-family: 'Questrial', sans-serif;
 }
 
-.header_logo {
+.header-logo {
     padding: 1rem;
     color: white;
     background-color: #4dafff;
