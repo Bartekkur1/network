@@ -8,8 +8,8 @@ import SecuredRoute from '../components/Security/SecuredRoute';
 import Home from './Home/Home';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSignal } from '@fortawesome/free-solid-svg-icons'
-library.add( faSignal );
+import { faSignal, faPowerOff, faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
+library.add( faSignal, faPowerOff, faPlay, faPause );
 
 class App extends Component {
 

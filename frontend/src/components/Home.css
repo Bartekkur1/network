@@ -1,6 +1,7 @@
 .home-container {
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
+    flex-direction: column;
 }
 
 .loading-container {
@@ -20,4 +21,98 @@
     height: 90vh;
     justify-content: center;
     align-items: center;
+}
+
+.home-board {
+    width: 100%;
+}
+
+.test-board {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.test-board-label {
+    font-size: 0.8rem;
+}
+
+.test-board-result {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+}
+
+.test-board-value {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.test-board-value-label {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.test-board-result h1 {
+    font-size: 4.5rem;
+    font-weight: 300;
+}
+
+.test-board-result span {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.test-board-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.test-board-status {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.test-board-status-label {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.status-label-color {
+    color: red;
+}
+
+.test-board-progress {
+    display: flex;
+    flex-direction: column;
+}
+
+.test-board-progress-container {
+    padding: 1rem;
+}
+
+.test-board-progress-node {
+    padding: 1rem;
+    width: 100%;
+    margin-right: 15rem;
+    display: flex;
+    flex-direction: column;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.test-board-progress-bar {
+    height: 1.2rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 0.2rem;
 }
