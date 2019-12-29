@@ -1,19 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TestResult } from './TestResult';
-import { TestStatus } from './TestStatus';
-import { TestProgress } from './TestProgress';
+import TestStatus from './TestStatus';
+import { connect } from 'react-redux';
 
-class TestBoard extends Component {
+const mapStateToProps = (state) => {
+    return {
+        test: state.Test
+    };
+};
 
-    render() {
-        return(
-            <div className="test-board">
-                <TestResult value={15} label="download"/>
-                <TestStatus status="Kek" />
-                <TestResult value={9} label="upload"/>
-            </div>
-        );
-    }
-}
+const TestBoard = (props) => {
+    return(
+        <div className="test-board">
+            <TestResult value={props.test.download} label="download"/>
+            <TestStatus status="Kek" />
+            <TestResult value={props.test.upload} label="upload"/>
+        </div>
+    );
+} 
 
-export default TestBoard;
+export default connect(mapStateToProps)(TestBoard);

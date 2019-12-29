@@ -2,21 +2,33 @@ const speedtest = require('speedtest-net');
 import { sendMessage, Message } from '../server';
 import { Server } from '../entity/server';
 import { getDb, DbSchema, initDatabase } from './dbService';
-import low from 'lowdb';
 import { Client } from '../entity/client';
 import { Result } from '../entity/result';
+import low from 'lowdb';
+import config from '../config';
 
-type serviceStatus = 'RUNING' | 'WAITING';
+type serviceStatus = 'RUNING' | 'WAITING' | "STOPPED";
 
 export const networkService = {
     test: <any>null,
     status: <serviceStatus>'WAITING',
+    interval: <NodeJS.Timeout>null,
     init: () => {
-        networkService.status = 'RUNING';
         initDatabase();
-        networkService.runTest();
+        networkService.interval = setInterval(() => {
+            if(networkService.status === 'WAITING')
+                networkService.runTest();
+        }, 25000);
     },
     runTest: () => {
+        networkService.status = "RUNING";
+        sendMessage(<Message[]>[{
+            name: "resetTest",
+            value: null
+        }, {
+            name: "status",
+            value: "RUNING"
+        }]);
         networkService.test = speedtest({ maxTime: 5000 });
         networkService.pinHandlers();
     },
@@ -34,6 +46,10 @@ export const networkService = {
             networkServiceHandler.handleResult(data, db));
         networkService.test.on('config', (config: any) => 
             networkServiceHandler.handleConfig(config, db));
+        networkService.test.on('downloadspeedprogress', (speed: any) => 
+            networkServiceHandler.handleSpeed("download", speed));
+        networkService.test.on('uploadspeedprogress', (speed: any) => 
+            networkServiceHandler.handleSpeed("upload", speed));
     },
     initialData: () => {
         let db = getDb();
@@ -47,14 +63,24 @@ export const networkService = {
         }, {
             name: 'results',
             value: results
+        }, {
+            name: 'status',
+            value: networkService.status
         }];
     },
     stopTest: () => {
         networkService.test.removeAllListeners();
+        clearInterval(networkService.interval);
     },
 }
 
 const networkServiceHandler = {
+    handleSpeed: (type: "download" | "upload", data: any) => {
+        sendMessage(<Message>{
+            name: type + "SpeedProgress",
+            value: data
+        });
+    },
     handleResult: (data: any, db: low.LowdbSync<DbSchema>) => {
         let results = db.get('results');
         let date = new Date(Date.now() - new Date().getTimezoneOffset() * 60000);
@@ -64,10 +90,14 @@ const networkServiceHandler = {
             id: results.value().length + 1
         };
         results.push(result).write();
-        sendMessage(<Message>{
+        sendMessage(<Message[]>[{
             name: 'result',
             value: result
-        });
+        }, {
+            name: 'status',
+            value: "WAITING"
+        }]);
+        networkService.status = "WAITING";
     },
     handleConfig: (config: any, db: low.LowdbSync<DbSchema>) => {
         db.set('client', rawDataToClient(config)).write();
@@ -78,7 +108,7 @@ const networkServiceHandler = {
     },
     handleProgress: (speed: number, type: 'upload' | 'download') => {
         sendMessage(<Message>{
-            name: type,
+            name: type + "Progress",
             value: '' + speed
         });
     },

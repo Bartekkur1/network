@@ -31,10 +31,11 @@
     padding: 1rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     max-width: 1500px;
     margin-left: auto;
     margin-right: auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .test-board-label {
@@ -52,6 +53,8 @@
     display: flex;
     flex-direction: row;
     align-items: baseline;
+    justify-content: center;
+    width: 250px;
 }
 
 .test-board-value-label {
@@ -90,16 +93,12 @@
 }
 
 .status-label-color {
-    color: red;
+    color: black;
 }
 
 .test-board-progress {
     display: flex;
     flex-direction: column;
-}
-
-.test-board-progress-container {
-    padding: 1rem;
 }
 
 .test-board-progress-node {
@@ -115,4 +114,17 @@
     height: 1.2rem;
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin-top: 0.2rem;
+}
+
+.result-board {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+.result-board-panel {
+    width: 50%;
+    padding: 1rem;
+    max-width: 550px;
 }

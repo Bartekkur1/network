@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar } from '../Navbar/Navbar';
+import { ResultBoard } from './ResultBoard';
 import TestBoard from './TestBoard';
 
 export default class Home extends Component {
@@ -9,6 +10,7 @@ export default class Home extends Component {
                 <Navbar />
                 <div className="home-board">
                     <TestBoard />
+                    <ResultBoard />
                 </div>
             </div>
         )

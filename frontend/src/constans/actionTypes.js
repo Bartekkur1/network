@@ -1,6 +1,18 @@
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+
 export const SHOW_LOADING = "SHOW_LOADING";
 export const HIDE_LOADING = "HIDE_LOADING";
+
 export const SHOW_ALERT = "SHOW_ALERT";
 export const HIDE_ALERT = "HIDE_ALERT";
+
+export const UPLOAD_TEST_PROGRESS = "UPLOAD_TEST_PROGRESS"; 
+export const DOWNLOAD_TEST_PROGRESS = "DOWNLOAD_TEST_PROGRESS";
+export const UPLOAD_SPEED_PROGRESS = "UPLOAD_SPEED_PROGRESS";
+export const DOWNLOAD_SPEED_PROGRESS = "DOWNLOAD_SPEED_PROGRESS";
+export const RESULT = "RESULT";
+export const RESET_TEST = "RESET_TEST"; 
+export const SET_STATUS = "SET_STATUS"; 
+export const SET_RESULTS = "SET_RESULTS";
+export const ADD_RESULT = "ADD_RESULT";
