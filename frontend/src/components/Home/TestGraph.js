@@ -18,14 +18,14 @@ const TestGraph = (props) => {
                         label: 'download',
                         fill: false,
                         borderColor: 'red',
-                        lineTension: 0.1,
+                        lineTension: 0.5,
                         data: props.test.results.map(e => (e.download / 8).toFixed(2))
                     },
                     {
                         label: 'upload',
                         fill: false,
                         borderColor: 'blue',
-                        lineTension: 0.1,
+                        lineTension: 0.5,
                         data: props.test.results.map(e => (e.upload / 8).toFixed(2))
                     }
                 ]

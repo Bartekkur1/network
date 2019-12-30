@@ -20,11 +20,12 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(bodyParser.json());
 
 app.use(handleAuthorization);
 
 app.listen(config.port, config.host, 0, () => {
-    console.log(`App is running on ${config.host}:${config.port}`);
     networkService.init();
+    console.log(`App is running on ${config.host}:${config.port}`);
 });

@@ -9,7 +9,7 @@ const TestSpeedProgress = (props) => {
         value = props.upload/25;
 
     return(
-        <div>
+        <div className="test-speed-progress">
             <GaugeChart id="gauge-chart" 
                 nrOfLevels={15}
                 hideText={true}

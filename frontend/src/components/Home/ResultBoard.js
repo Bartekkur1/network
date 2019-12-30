@@ -1,12 +1,12 @@
 import React from 'react';
-import TestProgress from './TestProgress';
 import TestGraph from './TestGraph';
+import BestServer from './BestServer';
 
 export const ResultBoard = (props) => {
     return(
         <div className="result-board">
             <div className="result-board-panel">
-                <TestProgress />
+                <BestServer />
             </div>
             <div className="result-board-panel">
                 <TestGraph />

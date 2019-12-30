@@ -31,11 +31,16 @@
     padding: 1rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    max-width: 1500px;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.test-board-group {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    justify-content: center;
 }
 
 .test-board-label {
@@ -54,7 +59,7 @@
     flex-direction: row;
     align-items: baseline;
     justify-content: center;
-    width: 250px;
+    width: 100%;
 }
 
 .test-board-value-label {
@@ -102,9 +107,9 @@
 }
 
 .test-board-progress-node {
-    padding: 1rem;
     width: 100%;
-    margin-right: 15rem;
+    padding-top: 1rem;
+    margin-right: 10rem;
     display: flex;
     flex-direction: column;
     color: rgba(0, 0, 0, 0.8);
@@ -124,7 +129,25 @@
 }
 
 .result-board-panel {
-    width: 50%;
+    width: 30%;
     padding: 1rem;
-    max-width: 550px;
+}
+
+.test-speed-progress {
+    padding: 1rem;
+    width: 20%;
+}
+
+.test-best-server {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.test-best-server-label {
+    width: 100%;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
 }

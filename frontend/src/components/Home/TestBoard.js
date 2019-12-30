@@ -1,7 +1,8 @@
 import React from 'react';
 import { TestResult } from './TestResult';
-import TestStatus from './TestStatus';
 import { connect } from 'react-redux';
+import TestSpeedProgress from './TestSpeedProgress';
+import TestProgress from './TestProgress';
 
 const mapStateToProps = (state) => {
     return {
@@ -12,9 +13,15 @@ const mapStateToProps = (state) => {
 const TestBoard = (props) => {
     return(
         <div className="test-board">
-            <TestResult value={props.test.download} label="download"/>
-            <TestStatus status="Kek" />
-            <TestResult value={props.test.upload} label="upload"/>
+            <div className="test-board-group">
+                <TestResult value={props.test.download} label="download"/>
+                <TestProgress label="Download" progress={props.test.downloadProgress}/>
+            </div>
+            <TestSpeedProgress download={props.test.download} upload={props.test.upload} />
+            <div className="test-board-group">
+                <TestResult value={props.test.upload} label="upload"/>
+                <TestProgress label="Upload" progress={props.test.uploadProgress}/>
+            </div>
         </div>
     );
 } 

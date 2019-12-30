@@ -3,7 +3,7 @@ export default {
     "jwtExpirationHours": 2,
     "login": "Admin",
     "password": "Admin",
-    "testTimeoutSec": 5,
+    "testTimeoutSec": 40,
     "host": "localhost",
     "port": 8000,
     "wsPort": 8001

@@ -16,3 +16,5 @@ export const RESET_TEST = "RESET_TEST";
 export const SET_STATUS = "SET_STATUS"; 
 export const SET_RESULTS = "SET_RESULTS";
 export const ADD_RESULT = "ADD_RESULT";
+
+export const SET_BEST_SERVER = "SET_BEST_SERVER";

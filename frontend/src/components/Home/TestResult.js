@@ -8,7 +8,7 @@ export const TestResult = (props) => {
                 <span>mb/s</span>
             </div>
             <div className="test-board-value-label">
-                {props.label}
+                {/* {props.label} */}
             </div>
         </div>
     );
