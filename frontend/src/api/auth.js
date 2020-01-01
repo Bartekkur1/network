@@ -1,6 +1,6 @@
 import config from '../config';
 import { store } from '../store';
-import { SHOW_LOADING, HIDE_LOADING, SHOW_ALERT, LOGIN, LOGOUT } from '../constans/actionTypes';
+import { SHOW_LOADING, HIDE_LOADING, SHOW_ALERT, LOGIN, LOGOUT, RESET_TEST } from '../constans/actionTypes';
 import { ERROR } from '../constans/alertTypes';
 
 export const Auth = {
@@ -20,6 +20,7 @@ export const Auth = {
             .then(txt => {
                 let response = JSON.parse(txt);
                 if(res.status !== 200) {
+                    store.dispatch({ type: RESET_TEST });
                     store.dispatch({ type: SHOW_ALERT, message: response.error, alertType: ERROR });
                 }
                 else {

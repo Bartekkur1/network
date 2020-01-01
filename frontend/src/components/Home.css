@@ -142,6 +142,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    padding-top: 1.5rem;
 }
 
 .test-best-server-label {
@@ -150,4 +151,17 @@
     color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: flex-end;
+}
+
+.client-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.client-info-value {
+    font-size: 1.5rem;
+}
+
+.client-info-label {
+    color: rgba(0, 0, 0, 0.5);
 }

@@ -11,8 +11,8 @@ import { SHOW_LOADING, HIDE_LOADING,
     UPLOAD_SPEED_PROGRESS,
     SET_STATUS,
     SET_RESULTS,
-    ADD_RESULT,
-    SET_BEST_SERVER} from '../constans/actionTypes';
+    SET_BEST_SERVER,
+    SET_CLIENT_INFO} from '../constans/actionTypes';
 
 export const ws = {
     socket: null,
@@ -74,7 +74,9 @@ function handleMessage(message) {
         case 'results':
             return store.dispatch({ type: SET_RESULTS, value: message.value });
         case 'testServer':
-        return store.dispatch({ type: SET_BEST_SERVER, value: message.value });
+            return store.dispatch({ type: SET_BEST_SERVER, value: message.value });
+        case 'clientInfo':
+            return store.dispatch({ type: SET_CLIENT_INFO, value: message.value });
         default:
             console.log(message.name);
     }

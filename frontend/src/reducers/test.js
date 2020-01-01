@@ -58,7 +58,7 @@ export default (state = {
         case SET_RESULTS:
             return {
                 ...state,
-                results: action.value
+                results: action.value.reverse()
             }
         default:
             return state

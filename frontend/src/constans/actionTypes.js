@@ -18,3 +18,5 @@ export const SET_RESULTS = "SET_RESULTS";
 export const ADD_RESULT = "ADD_RESULT";
 
 export const SET_BEST_SERVER = "SET_BEST_SERVER";
+
+export const SET_CLIENT_INFO = "SET_CLIENT_INFO";
