@@ -21,7 +21,7 @@
     "@types/ws": "^6.0.4",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lowdb": "^1.0.0",
     "speedtest-net": "^1.6.0",
     "typescript": "^3.7.4",
